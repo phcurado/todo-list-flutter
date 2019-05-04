@@ -21,16 +21,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showModalSheet() {
-    showModalBottomSheet(
-        context: context,
-        builder: (builder) {
-          return BottomModal(
-            body: TodoForm(),
-          );
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
