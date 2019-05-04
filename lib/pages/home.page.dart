@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertodoapp/components/bottom_modal.dart';
+import 'package:fluttertodoapp/forms/todo.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -16,6 +18,16 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _counter++;
     });
+  }
+
+  void _showModalSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (builder) {
+          return BottomModal(
+            body: TodoForm(),
+          );
+        });
   }
 
   @override
@@ -39,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _showModalSheet,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
