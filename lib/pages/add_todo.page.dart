@@ -10,7 +10,7 @@ class AddTodoPage extends StatefulWidget {
 
 class _AddTodoPageState extends State<AddTodoPage> {
   int _counter = 0;
-  String _title;
+  String _title = "HI";
 
   void _incrementCounter() {
     setState(() {
@@ -18,7 +18,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
     });
   }
 
-  void _getVariable(String title, String description) {
+  void _getVariable(String title) {
     setState(() {
       _title = title;
     });

@@ -17,18 +17,15 @@ class _TodoFormState extends State<TodoForm> {
   final TextEditingController descriptionController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    titleController.addListener(widget.getVariable(titleController.value, ""));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          TextField(
+            onChanged: (value) => widget.getVariable(value),
+          ),
           TextFormField(
             controller: titleController,
             validator: (value) {
