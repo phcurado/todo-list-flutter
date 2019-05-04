@@ -10,6 +10,8 @@ class BottomModal extends StatelessWidget {
     return Container(
       color: Color(0xFF737373),
       child: Container(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         decoration: BoxDecoration(
           color: Theme.of(context).canvasColor,
           borderRadius: BorderRadius.only(
