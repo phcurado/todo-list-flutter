@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertodoapp/components/bottom_modal.dart';
-import 'package:fluttertodoapp/forms/todo.dart';
+import '../components/bottom_modal.dart';
+import '../forms/todo.dart';
+import '../pages/add_todo.page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -51,7 +52,13 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showModalSheet,
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => AddTodoPage(),
+            ),
+          );
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
