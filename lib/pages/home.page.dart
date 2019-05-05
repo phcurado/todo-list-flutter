@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import '../components/bottom_modal.dart';
-import '../forms/todo.dart';
+import 'package:fluttertodoapp/entities/Task.dart';
 import '../pages/add_todo.page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  List<Task> tasks = [];
 
-  void _incrementCounter() {
+  void _setVariable(String title, String description) {
+    Task task = Task();
+    task.title = title;
+    task.description = description;
+    task.check = false;
     setState(() {
-      _counter++;
+      tasks.add(task);
     });
   }
 
@@ -25,21 +24,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("Todo List"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+              child: ListView.builder(
+            padding: EdgeInsets.all(4),
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {
+              print(tasks[index].check);
+              return Center(
+                  key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
+                  child: CheckboxListTile(
+                    title: Text(tasks[index].title),
+                    subtitle: Text(tasks[index].description),
+                    value: tasks[index].check,
+                    secondary: CircleAvatar(
+                        child: Icon(
+                            tasks[index].check ? Icons.check : Icons.error)),
+                    onChanged: (value) {
+                      setState(() {
+                        tasks[index].check = value;
+                      });
+                    },
+                  ));
+            },
+          ))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

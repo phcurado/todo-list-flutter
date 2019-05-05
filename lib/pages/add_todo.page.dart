@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertodoapp/forms/todo.dart';
 
 class AddTodoPage extends StatefulWidget {
-  AddTodoPage({Key key}) : super(key: key);
-
   @override
   _AddTodoPageState createState() => _AddTodoPageState();
 }
@@ -13,7 +11,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Adicione afazer'),
+        title: Text('Adicione a fazer'),
       ),
       body: Padding(
         padding: EdgeInsets.only(
