@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TodoForm extends StatefulWidget {
+  Function _setValues;
+  TodoForm(this._setValues);
+
   @override
   _TodoFormState createState() {
-    return _TodoFormState();
+    return _TodoFormState(_setValues);
   }
 }
 
 class _TodoFormState extends State<TodoForm> {
+  Function _setValues;
+  _TodoFormState(this._setValues);
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -15,6 +20,9 @@ class _TodoFormState extends State<TodoForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      onChanged: () {
+        _setValues(title: _titleController.text, description: _descriptionController.text);
+      },
       key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
