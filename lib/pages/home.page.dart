@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:fluttertodoapp/components/task_tile.dart';
 import 'package:fluttertodoapp/models/app_state.dart';
 import 'package:fluttertodoapp/models/task.dart';
 import 'package:fluttertodoapp/pages/add_todo.page.dart';
@@ -27,24 +28,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.all(4),
                   itemCount: tasks.length,
                   itemBuilder: (context, index) {
-                    return Center(
-                      key:
-                          Key(DateTime.now().millisecondsSinceEpoch.toString()),
-                      child: CheckboxListTile(
-                        title: Text(tasks[index].title),
-                        subtitle: Text(tasks[index].description),
-                        value: tasks[index].check,
-                        secondary: CircleAvatar(
-                            child: Icon(tasks[index].check
-                                ? Icons.check
-                                : Icons.error)),
-                        onChanged: (value) {
-                          setState(() {
-                            tasks[index].check = value;
-                          });
-                        },
-                      ),
-                    );
+                    return TaskTile(tasks[index]);
                   },
                 ),
               );
