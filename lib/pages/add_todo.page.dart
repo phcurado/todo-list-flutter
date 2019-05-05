@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:fluttertodoapp/forms/todo.dart';
+import 'package:fluttertodoapp/models/app_state.dart';
 import 'package:fluttertodoapp/models/task.dart';
 import 'package:fluttertodoapp/store/actions/task_actions.dart';
 
@@ -9,11 +11,6 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
-  _setTask() {
-    includeTask(new Task(title: 'Hi', description: 'DESC'));
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +33,17 @@ class _AddTodoPageState extends State<AddTodoPage> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: MaterialButton(
-                      child: new Text('Adicionar'),
-                      onPressed: _setTask,
+                    child: StoreConnector<AppState, VoidCallback>(
+                      converter: (store) {
+                        return () => store.dispatch(includeTask(
+                            new Task(title: 'Hi', description: 'DESC')));
+                      },
+                      builder: (context, callback) {
+                        return MaterialButton(
+                          child: new Text('Adicionar'),
+                          onPressed: callback,
+                        );
+                      },
                     ),
                   ),
                 ],

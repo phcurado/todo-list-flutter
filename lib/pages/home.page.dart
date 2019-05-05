@@ -10,8 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Task> tasks = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
