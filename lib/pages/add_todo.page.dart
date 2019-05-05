@@ -9,39 +9,38 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
-  int _counter = 0;
-  String _title = "HI";
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _getVariable(String title) {
-    setState(() {
-      _title = title;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Adicione afazer'),
       ),
-      body: Column(
-        children: <Widget>[
-          Text(this._title),
-          Center(
-            child: TodoForm(_getVariable),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 20,
+          right: 20,
+        ),
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: TodoForm(),
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: MaterialButton(
+                      child: new Text('Adicionar'),
+                      onPressed: () => print('Pressed'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

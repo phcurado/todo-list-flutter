@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TodoForm extends StatefulWidget {
-  TodoForm(this.getVariable);
-
-  final Function getVariable;
-
   @override
   _TodoFormState createState() {
     return _TodoFormState();
@@ -13,8 +9,8 @@ class TodoForm extends StatefulWidget {
 
 class _TodoFormState extends State<TodoForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +19,21 @@ class _TodoFormState extends State<TodoForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          TextField(
-            onChanged: (value) => widget.getVariable(value),
-          ),
           TextFormField(
-            controller: titleController,
+            controller: _titleController,
+            decoration: InputDecoration(labelText: 'Título'),
             validator: (value) {
               if (value.isEmpty) {
-                return 'Por favor, digite sua atividade';
+                return 'Por favor, digite o título';
               }
             },
-            decoration: InputDecoration(labelText: 'asd'),
           ),
           TextFormField(
-            controller: descriptionController,
+            controller: _descriptionController,
+            decoration: InputDecoration(labelText: 'Descrição'),
             validator: (value) {
               if (value.isEmpty) {
-                return 'Por favor, digite sua atividade';
+                return 'Por favor, digite sua descrição';
               }
             },
           )
