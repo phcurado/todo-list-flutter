@@ -11,20 +11,25 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
+  String _title;
+  String _description;
 
-String _title;
-String _description;
+  _setValues({String title, String description}) {
+    setState(() {
+      _title = title;
+      _description = description;
+    });
+  }
 
-_setValues({String title, String description}) {
-  setState(() {
-   _title = title; 
-   _description = description; 
-  });
-}
+  _addToDo() {
+    return new Task(title: _title, description: _description);
+  }
 
-_addToDo() {
-  return new Task(title: _title, description: _description);
-}
+  _goBack(Function callback) {
+    callback();
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,14 +54,12 @@ _addToDo() {
                     padding: EdgeInsets.only(top: 20),
                     child: StoreConnector<AppState, VoidCallback>(
                       converter: (store) {
-                        return () => store.dispatch(includeTask(
-                            _addToDo()
-                        ));
+                        return () => store.dispatch(includeTask(_addToDo()));
                       },
                       builder: (context, callback) {
                         return MaterialButton(
                           child: new Text('Adicionar'),
-                          onPressed: callback,
+                          onPressed: () => _goBack(callback),
                         );
                       },
                     ),

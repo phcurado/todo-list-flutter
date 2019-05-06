@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertodoapp/models/task.dart';
 
 class TaskTile extends StatefulWidget {
-
   TaskTile(this.task);
 
   final Task task;
@@ -12,7 +11,6 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
-
   _TaskTileState(this.task);
 
   final Task task;
@@ -20,16 +18,13 @@ class _TaskTileState extends State<TaskTile> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      key:
-          Key(DateTime.now().millisecondsSinceEpoch.toString()),
+      key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
       child: CheckboxListTile(
-        title: Text(task.title),
-        subtitle: Text(task.description),
+        title: Text(task.title != null ? task.title : ""),
+        subtitle: Text(task.description != null ? task.description : ""),
         value: task.check,
-        secondary: CircleAvatar(
-            child: Icon(task.check
-                ? Icons.check
-                : Icons.error)),
+        secondary:
+            CircleAvatar(child: Icon(task.check ? Icons.check : Icons.error)),
         onChanged: (value) {
           setState(() {
             task.check = value;
@@ -39,4 +34,3 @@ class _TaskTileState extends State<TaskTile> {
     );
   }
 }
-
